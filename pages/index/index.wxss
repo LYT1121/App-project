@@ -3,3 +3,35 @@
 .index_swiper swiper {
   height: 340rpx;
 }
+/* 导航菜单样式 */
+.index_nav {
+  display: flex;
+}
+.index_nav navigator {
+  flex: 1;
+  padding: 20rpx;
+}
+/* 楼层样式 */
+.index_floor .floor_group {
+  margin-bottom: 20rpx;
+}
+.index_floor .floor_group .floor_group_concent {
+  overflow: hidden;
+}
+.index_floor .floor_group .floor_group_concent navigator {
+  box-sizing: border-box;
+  float: left;
+  width: 33%;
+  border: 5rpx solid #fff;
+  border-top: none;
+}
+.index_floor .floor_group .floor_group_concent navigator:nth-last-child(-n+4) {
+  /* 原图的宽/原图的高=变化后的宽/变化后的高 */
+  height: 207.43534483rpx;
+}
+.index_floor .floor_group .floor_group_concent navigator:nth-last-child(-n+4) image {
+  height: 100%;
+}
+.index_floor .floor_group .floor_group_concent navigator:nth-last-child(-n+2) {
+  border-top: 5rpx solid #fff;
+}
