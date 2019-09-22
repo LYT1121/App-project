@@ -1,0 +1,9 @@
+<view class="search_input">
+    <!-- 搜索框跳转 -->
+    <navigator url="/pages/search/index">
+        <icon type="search" size="18"></icon> 
+        搜索
+    </navigator>
+      
+</view>
+  
