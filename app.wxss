@@ -1,10 +1,15 @@
-/**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+/* 引入全局字体图标样式文件 */
+@import "styles/iconfont.wxss";
+/* 写全局公共样式 => 通配符* 不能用*/
+view,page,text,swiper,swiper-item,navigatoe,image,button,input{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+page{
+    color: #666;
+    font-size: 28rpx;
+    /* 原生的方法声明全局变量 比如--color:yellow,使用background-color:var(--color)*/
+    /* 声明变量 */
+    --themeColor:#e8424d;
+}
