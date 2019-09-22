@@ -13,3 +13,6 @@ page{
     /* 声明变量 */
     --themeColor:#e8424d;
 }
+image{
+    width: 100%;
+}

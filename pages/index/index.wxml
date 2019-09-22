@@ -1,1 +1,11 @@
 <searchInput></searchInput>
+<!-- 轮播图 -->
+<view class="index_swiper">
+    <!-- circular是否采用衔接滑动 autoplay是否自动切换 indicator-dots是否显示面板指示点 -->
+    <swiper circular indicator-dots autoplay>
+        <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+            <image src="{{item.image_src}}" mode="widthFix"/>   
+        </swiper-item>
+    </swiper> 
+</view>
+  
