@@ -1,1 +1,15 @@
-/* pages/goods_list/index.wxss */
+.goods_view .goods_groud {
+  display: flex;
+  border-bottom: 2rpx solid #ccc;
+}
+.goods_view .goods_groud .title {
+  flex: 1;
+  display: flex;
+  height: 80rpx;
+  justify-content: center;
+  line-height: 1;
+}
+.goods_view .goods_groud .native {
+  border-bottom: 2rpx solid var(--themeColor);
+  color: var(--themeColor);
+}

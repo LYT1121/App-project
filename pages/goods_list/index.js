@@ -1,66 +1,38 @@
 // pages/goods_list/index.js
+// 引入封装好的异步代码来发送请求
+import {request} from "../../request/index.js"
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    // 商品列表标题数据
+    titleList:[
+      {serial:0,title:'综合'},
+      {serial:1,title:'销量'},
+      {serial:2,title:'价格'}
+    ],
+    curronIndex:0,
+    // 商品列表数据
+    goodsList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad(options){
+    // console.log(options);
+    // 使用封装好的异步请求
+    request({
+      url:`/goods/search?cid=${options.cid}`
+    }).then(result=>{
+      // console.log(result.data.message.goods);
+      this.setData({
+        goodsList:result.data.message.goods
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleChange(e){
+    // console.log(e);
+    this.setData({
+      curronIndex:e.target.dataset.index
+    })
   }
 })
