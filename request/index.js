@@ -4,7 +4,7 @@ let requestTimes = 0
 export const request=(params)=>{
     requestTimes++
     // 全局的loading效果
-    wx.wx.showLoading({
+    wx.showLoading({
         title: "加载中",
         mask: true,// 遮罩层，在加载完成之前用户无法点击里面的内容
     });

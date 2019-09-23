@@ -1,0 +1,59 @@
+// 固定分类页面标题高度
+.cates_view{
+    // height:屏幕的高度-头部搜索框的高度 =>tabbar默认不占页面高度
+    // ~'' =>让less不要编译
+    // vh 视口的高度 = 100%
+    height: ~'calc(100vh - 45rpx)';
+    // 出现滚动条=>overflow: scroll;=>页面用了内置的标签
+    overflow: hidden;
+    display: flex;
+    .memu_group{
+        flex: 1;
+        // 如果有具体尺寸 width : 160rpx
+        background-color: #eee;
+        .memu_group_title{
+            height: 80rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1rpx solid #ccc;
+        }
+        .native{
+            background-color: #fff;
+            border-left: 10rpx solid #e8424d;
+            color: var(--themeColor);
+        }
+    }
+    .goods_list{
+        flex: 3;
+        margin-bottom: 30rpx;
+        // width:~'calc(100vw-160rpx)' / flex: 1
+        .goods_group{
+            .goods_group_title{
+                height: 80rpx;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .group_title{
+                    margin:0 20rpx;
+                    line-height: 10rpx;
+                }
+            }
+            .goods_group_concent{
+                display: flex;
+                flex-wrap: wrap;
+                .goods_item{ 
+                    width: 33%;
+                    text-align: center;
+                    margin-bottom: 10rpx;
+                    image{
+                       width: 65%; 
+                    }
+                    .name{
+                        font-size: 22rpx;
+                    }
+                }
+            }
+        }
+    }
+}
