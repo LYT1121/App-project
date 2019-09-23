@@ -6,7 +6,10 @@
     <!-- 左边 -->
     <scroll-view scroll-y class="memu_group">
         <!-- *this => item本身 => 代表的是唯一的字符串和数组-->
-        <view class="memu_group_title {{currentIndex===index?'native':''}}" wx:for="{{menuList}}" wx:key="*this" >
+        <view class="memu_group_title {{currentIndex===index?'native':''}}" wx:for="{{menuList}}" wx:key="*this"
+        bindtap="handleChange"
+        data-index="{{index}}"
+        >
             {{item}}
         </view>
     </scroll-view>

@@ -32,5 +32,16 @@ Page({
         goodsList:this.Datas[0].children
       })
     })
+  },
+  // 左边菜单点击切换
+  handleChange(e){
+    // console.log(e)
+    const {index} = e.target.dataset
+    this.setData({
+      // 索引切换
+      currentIndex:index,
+      // 切换右边商品
+      goodsList:this.Datas[index].children
+    })
   }
 })
