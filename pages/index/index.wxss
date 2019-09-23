@@ -27,7 +27,7 @@
 }
 .index_floor .floor_group .floor_group_concent navigator:nth-last-child(-n+4) {
   /* 原图的宽/原图的高=变化后的宽/变化后的高 */
-  height: 207.43534483rpx;
+  height: 204.43534483rpx;
 }
 .index_floor .floor_group .floor_group_concent navigator:nth-last-child(-n+4) image {
   height: 100%;
