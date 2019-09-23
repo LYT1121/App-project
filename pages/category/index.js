@@ -9,7 +9,9 @@ Page({
     // 右侧要显示的内容
     goodsList:[],
     // 左侧菜单被选中的索引
-    currentIndex:0
+    currentIndex:0,
+    // 右边商品列表滚动条位置
+    scrollTop:0
   },
   // 定义一个全局数据变量(页面中用不到的在data外设置)=>接口的返回值
   Datas:[],
@@ -41,7 +43,9 @@ Page({
       // 索引切换
       currentIndex:index,
       // 切换右边商品
-      goodsList:this.Datas[index].children
+      goodsList:this.Datas[index].children,
+      // 切换时滚动条位置回顶部
+      scrollTop:0
     })
   }
 })
