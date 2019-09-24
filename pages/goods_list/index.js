@@ -24,6 +24,8 @@ Page({
     // 页容量
     pagesize:10,
   },
+  // 总页数
+  totalPages:1,
 
   /**
    * 生命周期函数--监听页面加载
@@ -41,12 +43,52 @@ Page({
       // 把数据传递
       data:this.goodsData
     }).then(result=>{
-      // console.log(result.data.message.goods);
+      // console.log(result);
+      // 新数组
+      const newGoodsList = result.data.message.goods;
+      // 旧数组
+      const oldGoodsList = this.data.goodsList;
+      // 总条数
+      const total = result.data.message.total;
+      // 计算总页数
+      this.totalPages = Math.ceil(total/this.goodsData.pagesize);
       this.setData({
-        goodsList:result.data.message.goods
+        // 实现加载下一页数据=>重新给数组赋值=>新旧数据合并
+        goodsList:[...newGoodsList,...oldGoodsList]
       })
     })
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh(){
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom(){
+    console.log(1233445678);
+    // 判断=>当当前的页面>=总页码
+     if(this.goodsData.pagenum > this.totalPages){
+       // 没有下一页
+       // 提示
+       wx.showToast({
+         title: '温馨提示：没有下一页了哦！',
+         icon: 'none',
+         mask: true
+       });
+         
+     }else{
+       // 有下一页数据
+       // 让页码++
+       this.goodsData.pagenum++;
+       // 重新发送请求
+       this.getGoods();
+     }
+  },
+  // 切换标题传值
   itemChange(e){
     // console.log(e);
     this.setData({
