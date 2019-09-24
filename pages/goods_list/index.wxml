@@ -1,27 +1,24 @@
 <searchInput></searchInput>
-<view class="goods_view">
-    <!-- 标题 -->
-    <view class="goods_groud">
-        <text class="title {{index===curronIndex?'native':''}}" wx:for="{{titleList}}" wx:key="serial"  bindtap="handleChange" data-index="{{index}}">
-            {{item.title}}
-        </text>
-    </view>
-    <!-- 商品列表 -->
-    <view class="goods_groud_list">
-        <navigator url="" wx:for="{{goodsList}}" wx:key="goods_id">
-            <image src="{{item.goods_small_logo}}" mode="widthFix"/>
+<!-- tabs组件 -->
+<tabs titleList="{{titleList}}" curronIndex="{{curronIndex}}" binditemChange="itemChange">
+    <view class="list_content" wx:if="{{curronIndex===0}}">
+        <!-- 商品列表 -->
+        <navigator url="" class="goods_groud_list" wx:for="{{goodsList}}" wx:key="goods_id">
+            <view class="img_wrap">
+                <image
+                    src="{{item.goods_small_logo || 'https://tva2.sinaimg.cn/large/005R6Otmgy1g7alcuwpl6j30cx0cxabl.jpg'}}"
+                    mode="widthFix" />
+            </view>
             <view class="goods_name">
-                <text class="name">
+                <view class="name">
                     {{item.goods_name}}
-                </text>
-                <text class="price">
+                </view>
+                <view class="price">
                     ￥{{item.goods_price}}
-                </text>
-                  
+                </view>
             </view>
         </navigator>
-          
-          
     </view>
-</view>
-  
+    <view class="list_content" wx:elif="{{curronIndex===1}}"> 1 </view>
+    <view class="list_content" wx:else> 2 </view>
+</tabs>

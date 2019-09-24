@@ -1,0 +1,15 @@
+.goods_groud {
+  display: flex;
+  height: 90rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+.goods_groud .title {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.goods_groud .native {
+  border-bottom: 2rpx solid var(--themeColor);
+  color: var(--themeColor);
+}

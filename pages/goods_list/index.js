@@ -13,15 +13,33 @@ Page({
     // 商品列表数据
     goodsList:[]
   },
+  // 定义一个点击商品传递过来的全局的请求参数对象
+  goodsData:{
+    // 查询的关键字
+    query:'',
+    // 从分类页面 传递过来的分类ID
+    cid:'',
+    // 页码
+    pagenum:1,
+    // 页容量
+    pagesize:10,
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options){
     // console.log(options);
+    const {cid} = options;
+    this.goodsData.cid = cid;
+    this.getGoods()
+  },
+  getGoods(){
     // 使用封装好的异步请求
     request({
-      url:`/goods/search?cid=${options.cid}`
+      url:'/goods/search',
+      // 把数据传递
+      data:this.goodsData
     }).then(result=>{
       // console.log(result.data.message.goods);
       this.setData({
@@ -29,10 +47,10 @@ Page({
       })
     })
   },
-  handleChange(e){
+  itemChange(e){
     // console.log(e);
     this.setData({
-      curronIndex:e.target.dataset.index
+      curronIndex:e.detail.index
     })
   }
 })

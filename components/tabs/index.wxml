@@ -1,0 +1,9 @@
+<view class="goods_groud">
+    <view class="title {{index===curronIndex?'native':''}}" wx:for="{{titleList}}" wx:key="serial"  bindtap="handleChange" data-index="{{index}}">
+        {{item.title}}
+    </view>
+</view>
+<!-- 内容 -->
+<view class="tabs_content">
+        <slot></slot>
+    </view>
