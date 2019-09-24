@@ -3,7 +3,7 @@
 <tabs titleList="{{titleList}}" curronIndex="{{curronIndex}}" binditemChange="itemChange">
     <view class="list_content" wx:if="{{curronIndex===0}}">
         <!-- 商品列表 -->
-        <navigator url="" class="goods_groud_list" wx:for="{{goodsList}}" wx:key="goods_id">
+        <navigator url="" class="goods_groud_list" wx:for="{{goodsList}}" wx:key="index">
             <view class="img_wrap">
                 <image
                     src="{{item.goods_small_logo || 'https://tva2.sinaimg.cn/large/005R6Otmgy1g7alcuwpl6j30cx0cxabl.jpg'}}"

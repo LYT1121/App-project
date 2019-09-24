@@ -54,24 +54,32 @@ Page({
       this.totalPages = Math.ceil(total/this.goodsData.pagesize);
       this.setData({
         // 实现加载下一页数据=>重新给数组赋值=>新旧数据合并
-        goodsList:[...newGoodsList,...oldGoodsList]
+        // goodsList:[...oldGoodsList,...newGoodsList]
+        goodsList: oldGoodsList.concat(newGoodsList)
       })
+      // 停止下拉刷新
+      wx.stopPullDownRefresh()
     })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh(){
-
+    // 重置页面=>页码返回第一页/数组
+    this.goodsData.pagenum = 1;
+    this.setData({
+      goodsList:[]
+    })
+    // 重新发送请求
+    this.getGoods();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom(){
-    console.log(1233445678);
-    // 判断=>当当前的页面>=总页码
-     if(this.goodsData.pagenum > this.totalPages){
+    // 判断=>当前的页码>=总页码
+    if(this.totalPages <= this.goodsData.pagenum){
        // 没有下一页
        // 提示
        wx.showToast({
