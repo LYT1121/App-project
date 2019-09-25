@@ -43,23 +43,25 @@
     <!-- 底部工具类 -->
     <view class="btm_tool">
         <view class="tool_item">
+            <button open-type="contact"></button>
             <text class="iconfont icon-kefu"></text>
             <view fool_name>
                 客服
             </view>
         </view>
         <view class="tool_item">
+            <button open-type="share"></button>
             <text class="iconfont icon-yixianshi-"></text>
             <view fool_name>
                 分享
             </view>
         </view>
-        <view class="tool_item">
+        <navigator class="tool_item" url="../cart/index" open-type="switchTab">
             <text class="iconfont icon-gouwuche"></text>
             <view fool_name>
                 购物车
             </view>
-        </view>
+        </navigator>
         <view class="tool_item btm_cart">
             加入购物车
         </view>
