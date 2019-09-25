@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "commodityDetails":"../../components/commodityDetails/index"
+  },
   "navigationBarTitleText": "商品详情"
 }

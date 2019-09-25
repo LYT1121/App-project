@@ -1,0 +1,19 @@
+.goods_detail {
+  display: flex;
+  height: 80rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+.goods_detail .info {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.goods_detail .info .title {
+  height: 100%;
+  padding: 0 40rpx 0 40rpx;
+}
+.goods_detail .info .native {
+  border-bottom: 2rpx solid var(--themeColor);
+  color: var(--themeColor);
+}

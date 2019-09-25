@@ -1,0 +1,12 @@
+<view class="goods_detail">
+    <view class="info">
+        <view class="title {{index===curronIndex?'native':''}}" wx:for="{{detailTitleList}}" wx:key="id"
+        bindtap="handleChange" data-index="{{index}}">
+            {{item.title}}
+        </view>
+    </view>
+</view>
+<!-- 内容 -->
+<view class="goods_content">
+    <slot></slot>
+</view>

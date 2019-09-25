@@ -8,7 +8,13 @@ Page({
    */
   data: {
     // 商品详情数据
-    detailObj:{}
+    detailObj:{},
+    // 图片详情标题
+    detailTitleList:[
+      {id:0,title:'商品详情'},
+      {id:1,title:'评价'}
+    ],
+    curronIndex:0,
   },
 
   /**
@@ -50,5 +56,12 @@ Page({
       urls: imgArray
     });
       
+  },
+  // 切换商品详情标题传值
+  itemChange(e){
+    // console.log(e);
+    this.setData({
+      curronIndex:e.detail.index
+    })
   }
 })
