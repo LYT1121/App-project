@@ -1,30 +1,36 @@
-
 <view class="goods_detail">
     <!-- 轮播图 -->
     <view class="detail_picture">
         <swiper indicator-dots autoplay circular>
-            <swiper-item bindtap="handlePreviewImage" wx:for="{{detailObj.pics}}" wx:key="pids_id" data-current="{{item.pics_mid_url}}">
+            <swiper-item bindtap="handlePreviewImage" wx:for="{{detailObj.pics}}" wx:key="pids_id"
+                data-current="{{item.pics_mid_url}}">
                 <image src="{{item.pics_mid_url}}" mode="widthFix" />
             </swiper-item>
         </swiper>
     </view>
-    <!-- 标题和价格/商品收藏 -->
+    <!-- 标题 -->
+    <view class="detail_name">{{detailObj.goods_name}}</view>
+    <!-- 价格/商品收藏 -->
     <view class="goods_detail_info">
-        <!-- 左边 -->
-        <view class="detail_info">
-            <!-- 标题 -->
-            <view class="detail_name">{{detailObj.goods_name}}</view>
-            <!-- 价格 -->
-            <view class="detail_price"><span>￥</span>{{detailObj.goods_price}}</view>
-            <!-- 库存 -->
-            <view class="detail_number">库存：{{detailObj.goods_number}}</view>
-        </view>
-        <!-- 右边 -->
-        <view class="detail_collect"></view>
+            <!-- 左边 -->
+            <view class="detail_info">
+                <!-- 价格 -->
+                <view class="detail_price"><span>￥</span>{{detailObj.goods_price}}</view>
+                <!-- 库存 -->
+                <view class="detail_number">库存：{{detailObj.goods_number}}</view>
+            </view>
+            <!-- 右边 -->
+            <view class="detail_collect">
+                <text class="iconfont icon-shoucang"></text>
+                <view>
+                    收藏
+                </view>
+            </view>
     </view>
     <!-- 图文详情 -->
     <view class="detail_concent">
-        <commodityDetails detailTitleList="{{detailTitleList}}" curronIndex="{{curronIndex}}" binditemChange="itemChange">
+        <commodityDetails detailTitleList="{{detailTitleList}}" curronIndex="{{curronIndex}}"
+            binditemChange="itemChange">
             <view class="goods_content" wx:if="{{curronIndex===0}}">
                 <view class="goods_content_img">
                     <!-- 用到富文本标签解析获取到的内容 -->

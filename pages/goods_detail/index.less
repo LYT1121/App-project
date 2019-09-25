@@ -13,4 +13,44 @@
             }
         }
     }
+    .detail_name{
+        padding: 10rpx 20rpx 10rpx 20rpx;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .goods_detail_info{
+        display: flex;
+        padding: 0 20rpx 30rpx 20rpx;
+        border-bottom: 20rpx solid #eee;
+        .detail_info{
+           flex: 5;
+           .detail_price{
+              padding-top: 20rpx;
+              padding-bottom: 20rpx;
+              color: var(--themeColor);
+              font-size: 40rpx;
+              font-weight: 600;
+              span{
+                font-size: 24rpx;
+              }
+           }
+           .detail_number{}
+        }
+        .detail_collect{
+            flex: 1;
+            font-size: 30rpx;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text{
+                padding-bottom: 15rpx;
+            }
+        }
+    }
+    .detail_concent{
+        padding-top: 50rpx;
+    }
 }
