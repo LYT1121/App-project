@@ -12,20 +12,20 @@
     <view class="detail_name">{{detailObj.goods_name}}</view>
     <!-- 价格/商品收藏 -->
     <view class="goods_detail_info">
-            <!-- 左边 -->
-            <view class="detail_info">
-                <!-- 价格 -->
-                <view class="detail_price"><span>￥</span>{{detailObj.goods_price}}</view>
-                <!-- 库存 -->
-                <view class="detail_number">库存：{{detailObj.goods_number}}</view>
+        <!-- 左边 -->
+        <view class="detail_info">
+            <!-- 价格 -->
+            <view class="detail_price"><span>￥</span>{{detailObj.goods_price}}</view>
+            <!-- 库存 -->
+            <view class="detail_number">库存：{{detailObj.goods_number}}</view>
+        </view>
+        <!-- 右边 -->
+        <view class="detail_collect">
+            <text class="iconfont icon-shoucang"></text>
+            <view>
+                收藏
             </view>
-            <!-- 右边 -->
-            <view class="detail_collect">
-                <text class="iconfont icon-shoucang"></text>
-                <view>
-                    收藏
-                </view>
-            </view>
+        </view>
     </view>
     <!-- 图文详情 -->
     <view class="detail_concent">
@@ -39,5 +39,32 @@
             </view>
             <view class="goods_content" wx:else="{{curronIndex===1}}"> 1 </view>
         </commodityDetails>
+    </view>
+    <!-- 底部工具类 -->
+    <view class="btm_tool">
+        <view class="tool_item">
+            <text class="iconfont icon-kefu"></text>
+            <view fool_name>
+                客服
+            </view>
+        </view>
+        <view class="tool_item">
+            <text class="iconfont icon-yixianshi-"></text>
+            <view fool_name>
+                分享
+            </view>
+        </view>
+        <view class="tool_item">
+            <text class="iconfont icon-gouwuche"></text>
+            <view fool_name>
+                购物车
+            </view>
+        </view>
+        <view class="tool_item btm_cart">
+            加入购物车
+        </view>
+        <view class="tool_item btm_buy">
+            立即购买
+        </view>
     </view>
 </view>

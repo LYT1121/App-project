@@ -1,3 +1,6 @@
+.goods_detail {
+  padding-bottom: 80rpx;
+}
 .goods_detail .detail_picture swiper {
   padding: 20rpx;
   height: 500rpx;
@@ -47,4 +50,40 @@
 }
 .goods_detail .detail_concent {
   padding-top: 50rpx;
+}
+.goods_detail .detail_concent .goods_content {
+  padding-top: 20rpx;
+}
+.goods_detail .btm_tool {
+  position: fixed;
+  font-size: 24rpx;
+  width: 100%;
+  height: 90rpx;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+  display: flex;
+  background-color: #fff;
+}
+.goods_detail .btm_tool .tool_item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.goods_detail .btm_tool .tool_item text {
+  padding-bottom: 6rpx;
+}
+.goods_detail .btm_tool .btm_cart,
+.goods_detail .btm_tool .btm_buy {
+  flex: 2;
+  color: #fff;
+  font-weight: 600;
+}
+.goods_detail .btm_tool .btm_cart {
+  background-color: #ffa500;
+}
+.goods_detail .btm_tool .btm_buy {
+  background-color: var(--themeColor);
 }
