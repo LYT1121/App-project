@@ -31,5 +31,24 @@ Page({
         detailObj:result.data.message
       })
     })
+  },
+  // 点击轮播图事件
+  handlePreviewImage(e){
+    // console.log(e);
+    // 获取轮播图数组
+    const {detailObj} = this.data;
+    // console.log(detailObj.pics);
+    // 因为要的图片数组的格式是['1.jpg','2.jpg',...]
+    const imgArray = detailObj.pics.map(v=>v.pics_mid_url);
+    // 点击的当前图片=>页面已给了一个自定义属性data-current,只需要把值获取
+    const {current} = e.currentTarget.dataset;
+    // 小程序内置的方法=>新页面中全屏预览图片
+    wx:wx.previewImage({
+      // 当前显示图片的http链接
+      current: current,
+      // 需要预览的图片http链接列表
+      urls: imgArray
+    });
+      
   }
 })
