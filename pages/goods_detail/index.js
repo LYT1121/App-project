@@ -1,4 +1,6 @@
 // pages/goods_detail/index.js
+// 引入需要使用async语法
+import regeneratorRuntime from '../../lib/runtime/runtime';
 // 引入封装好的异步代码来发送请求
 import {request} from "../../request/index.js"
 Page({
@@ -24,9 +26,18 @@ Page({
     // console.log(options);
     this.getGoodsDetail(options.goods_id)
   },
-  getGoodsDetail(goods_id){
+  async getGoodsDetail(goods_id){
+    const result = await request({
+      url:'/goods/detail',
+      data:{
+        goods_id
+      }
+    })
+    this.setData({
+      detailObj:result.data.message
+    })
     // 发请求获取数据
-    request({
+    /* request({
       url:'/goods/detail',
       data:{
         goods_id
@@ -36,7 +47,7 @@ Page({
       this.setData({
         detailObj:result.data.message
       })
-    })
+    }) */
   },
   // 点击轮播图事件
   handlePreviewImage(e){
@@ -63,5 +74,33 @@ Page({
     this.setData({
       curronIndex:e.detail.index
     })
+  },
+  // 点击加入购物车事件
+  handleaCartAdd(){
+    // 获取商品对象
+    const {detailObj} = this.data;
+    // 获取本地存储的数据
+    let cartList = wx.getStorageSync('goodeCart') || [];
+    // 判断该商品是否存在于数组中
+    const index = cartList.findIndex((item)=>{
+      item.goods_id === detailObj.goods_id
+    })
+    if(index === -1){
+      // 没有=>第一次添加
+      // 新增一个商品对象
+      cartList.push({
+        goods_id:detailObj.goods_id,
+        goods_name:detailObj.goods_name,
+        goods_price:detailObj.goods_price,
+        goods_small_logo:detailObj.goods_small_logo,
+        number:1
+      })
+    }else{
+      // 购物车里面已存在此商品
+      // 相同的商品数量++
+      cartList[index].number++
+    }
+    // 把数组添加到本地存储里面
+    wx.setStorageSync('goodeCart',cartList)
   }
 })
