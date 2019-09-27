@@ -16,8 +16,12 @@ export const request=(params)=>{
             ...params,
             url: baseUrl+params.url,
             success: (result) => {
-                // 成功之后的回调
-                resolve(result)
+                if(result.data.meta&&result.data.meta.status === 200){
+                    // 成功之后的回调 => 把返回值写完整一点 => 方便后续不用写太繁琐
+                    resolve(result.data.message)
+                }else{
+                    reject(result)
+                }
             },
             fail: (err) => {
                 // 失败之后的回调

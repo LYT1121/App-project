@@ -34,7 +34,7 @@ Page({
       }
     })
     this.setData({
-      detailObj:result.data.message
+      detailObj:result
     })
     // 发请求获取数据
     /* request({
@@ -60,7 +60,7 @@ Page({
     // 点击的当前图片=>页面已给了一个自定义属性data-current,只需要把值获取
     const {current} = e.currentTarget.dataset;
     // 小程序内置的方法=>新页面中全屏预览图片
-    wx:wx.previewImage({
+    wx.previewImage({
       // 当前显示图片的http链接
       current: current,
       // 需要预览的图片http链接列表
