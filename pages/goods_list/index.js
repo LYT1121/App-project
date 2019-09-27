@@ -45,11 +45,12 @@ Page({
     }).then(result=>{
       // console.log(result);
       // 新数组
-      const newGoodsList = result.data.message.goods;
+      // const newGoodsList = result.data.message.goods;=>在封装好的请求里面优化了
+      const newGoodsList = result.goods;
       // 旧数组
       const oldGoodsList = this.data.goodsList;
       // 总条数
-      const total = result.data.message.total;
+      const total = result.total;
       // 计算总页数
       this.totalPages = Math.ceil(total/this.goodsData.pagesize);
       this.setData({

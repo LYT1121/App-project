@@ -52,7 +52,7 @@ Page({
       url:"/categories"
     }).then(result=>{
       // console.log(result);
-      this.Datas = result.data.message,
+      this.Datas = result,
       // 把获取成功后的数据存入本地存储=>同步存储
       wx.setStorageSync('getlist', {
         data:this.Datas,
