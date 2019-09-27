@@ -1,2 +1,16 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<view class="address">
+    <view wx:if="{{!addressObj}}" class="address_gain">
+        <button bindtap="handleAddress"></button>
+        <view class="title">
+            <view>请选择您的收货地址</view>
+            <view>></view>
+        </view>
+    </view>
+    <view wx:else class="address_info">
+        <view class="concent">
+            <view class="name"> 收货人：{{addressObj.userName}} </view>
+            <view class="site"> 收货地址：{{addressObj.site}} </view>
+        </view>
+        <view class="phone">{{addressObj.telNumber}}</view>
+    </view>
+</view>

@@ -37,3 +37,42 @@ export const request=(params)=>{
           
     })
 }
+// 封装一些按钮的相关事件 promise 形式的 getSetting
+export const getSetting =()=>{
+    return new Promise((resolve,reject)=>{
+    wx.getSetting({
+        success: (result) => {
+            resolve(result)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+      });
+    })
+}
+// 封装一些按钮的相关事件 promise 形式的 openSetting => 打开授权页面
+export const openSetting =()=>{
+    return new Promise((resolve,reject)=>{
+    wx.openSetting({
+        success: (result) => {
+            resolve(result)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+      }); 
+    })
+}
+// 封装一些按钮的相关事件 promise 形式的 chooseAddress
+export const chooseAddress =()=>{
+    return new Promise((resolve,reject)=>{
+    wx.chooseAddress({
+        success: (result) => {
+            resolve(result)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+      }); 
+    })
+}

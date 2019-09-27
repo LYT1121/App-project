@@ -102,5 +102,11 @@ Page({
     }
     // 把数组添加到本地存储里面
     wx.setStorageSync('goodeCart',cartList)
+    // 弹出窗口提示用户
+    wx.showToast({
+      title: '加入购物车成功',
+      mask: true
+      // icon: 'success',
+    });
   }
 })

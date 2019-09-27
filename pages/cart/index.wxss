@@ -1,1 +1,32 @@
-/* pages/cart/index.wxss */
+.address {
+  border-bottom: 10rpx solid #eee;
+}
+.address .address_gain {
+  position: relative;
+}
+.address .address_gain button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.address .address_gain .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+.address .address_info {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+.address .address_info .concent {
+  flex: 2;
+}
+.address .address_info .phone {
+  flex: 1;
+  text-align: right;
+}
