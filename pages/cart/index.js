@@ -2,7 +2,7 @@
 // 引入需要使用async语法
 import regeneratorRuntime from '../../lib/runtime/runtime';
 // 引入封装好的异步代码
-import {getSetting,openSetting,chooseAddress} from "../../request/index.js"
+import {getSetting,openSetting,chooseAddress,showModal} from "../../request/index.js"
 Page({
   data:{
     // 收货地址
@@ -87,6 +87,8 @@ Page({
         allChecked=false;
       }
     });
+    // 判断如果购物车里没有任何商品了，全选按钮为false
+    allChecked=carts.length===0?false:allChecked;
     // 把数据覆盖回data
     this.setData({
       allChecked,
@@ -112,14 +114,28 @@ Page({
     this.countPrice(carts)
   },
   // 数量按钮绑定事件
-  handleTap(e){
+  async handleTap(e){
     // console.log(e);
     // 获取用户点击的按钮/被点击数字的索引
     const {operation,index} = e.target.dataset;
     // console.log(operation);
     let {carts} = this.data;
-    // 点击＋/－按钮=>数字的变化
-    carts[index].number+=operation;
+    // 判断数量是否小于1=>执行删除操作
+    if(operation===-1&&carts[index].number===1){
+      // 弹框提醒用户是否进行删除操作
+      let res = await showModal({title: '温馨提示',
+      content: '您是否要删除该商品呢',})
+      if(res){
+        // 根据索引删掉购物车商品
+        carts.splice(index,1);
+      }else{
+        // 点了取消
+        return;
+      }
+    }else{
+      // 点击＋/－按钮=>数字的变化
+      carts[index].number+=operation;
+    }
     // 修改data中的carts和缓存中的carts
     this.setData({
       carts

@@ -16,7 +16,7 @@
 </view>
 <view class="cart">
     <view class="cart_title">购物车</view>
-    <view class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
+    <view wx:if="{{carts.length!=0}}" class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
         <!-- 复选框 -->
         <view class="cart_checkbox">
             <checkbox-group bindchange="handleItemChange" data-index="{{index}}">
@@ -42,9 +42,9 @@
             </view>
         </view>
     </view>
-    <navigator class="cart_none" url="../category/index" open-type="switchTab">
+    <!-- <navigator wx:else class="cart_none" url="../category/index" open-type="switchTab">
         <image src="https://s2.ax1x.com/2019/09/27/uMkWlR.png" mode="widthFix"/>
-    </navigator>
+    </navigator> -->
 </view>
 <!-- 购物车结算 -->
 <view class="btm_cart">

@@ -76,3 +76,17 @@ export const chooseAddress =()=>{
       }); 
     })
 }
+// 封装显示模态对话框
+export const showModal =(params)=>{
+    return new Promise((resolve,reject)=>{
+    wx.showModal({
+        ...params,
+        success: (result) => {
+            resolve(result.confirm)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+    });
+})  
+}
