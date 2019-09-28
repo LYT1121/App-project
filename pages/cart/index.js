@@ -110,5 +110,22 @@ Page({
     wx.setStorageSync('goodeCart',carts);
     // 重新计算数据(价格和数量)
     this.countPrice(carts)
+  },
+  // 数量按钮绑定事件
+  handleTap(e){
+    // console.log(e);
+    // 获取用户点击的按钮/被点击数字的索引
+    const {operation,index} = e.target.dataset;
+    // console.log(operation);
+    let {carts} = this.data;
+    // 点击＋/－按钮=>数字的变化
+    carts[index].number+=operation;
+    // 修改data中的carts和缓存中的carts
+    this.setData({
+      carts
+    })
+    wx.setStorageSync('goodeCart',carts);
+    // 重新计算数据(价格和数量)
+    this.countPrice(carts)
   }
 })

@@ -33,11 +33,11 @@
             <view class="cart_info_concent">
                 <view class="cart_info_price">￥{{item.goods_price}}</view>
                 <view class="cart_info_num">
-                   <button>-</button>
+                   <button data-index="{{index}}" bindtap="handleTap" data-operation="{{-1}}">-</button>
                    <view class="num">
                        {{item.number}}
                    </view>
-                   <button>+</button>
+                   <button data-index="{{index}}" bindtap="handleTap" data-operation="{{1}}">+</button>
                 </view>
             </view>
         </view>
