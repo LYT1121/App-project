@@ -51,18 +51,18 @@
     <!-- 复选框 -->
     <view class="cart_all_checkbox">
         <radio-group>
-            <radio>全选</radio>
+            <radio checked="{{allChecked}}">全选</radio>
         </radio-group>  
     </view>
     <!-- 合计 -->
     <view class="cart_total">
         <view class="total">
-            合计：<text>￥{{999}}</text>
+            合计：<text>￥ {{totalPrice}}</text>
         </view>
         <view class="postage">包含运费</view>
     </view>
     <!-- 结算按钮 -->
     <view class="cart_order">
-        结算({{1}})
+        结算({{totalNum}})
     </view>
 </view>

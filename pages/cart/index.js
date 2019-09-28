@@ -8,7 +8,13 @@ Page({
     // 收货地址
     addressObj:{},
     // 购物车信息
-    carts:[]
+    carts:[],
+    // 全选状态
+    allChecked:false,
+    // 总价格
+    totalPrice:0,
+    // 总数量
+    totalNum:0
   },
   onLoad(){
     this.getGoodeCart()
@@ -19,7 +25,9 @@ Page({
     this.setData({
       carts
     })
-    console.log(carts);
+    // console.log(carts);
+    // 页面一加载就调用计算数据
+    this.countPrice(carts)
   },
   // 合理获取收货地址=>获取用户信息=>获取用户授权状态=>打开授权页面
   handleAddress(){
@@ -31,7 +39,7 @@ Page({
     // 赋值
     this.setData({
       addressObj
-    }) 
+    })
   },
   async getUserInfo(){
     try{
@@ -58,5 +66,32 @@ Page({
     }catch(error){
       console.log(error);
     }
+  },
+  // 计算数据=>可能被调用多次=>封装起来
+  countPrice(carts){
+    // 全选状态
+    let allChecked=true;
+    // 总价格
+    let totalPrice=0;
+    // 总数量
+    let totalNum=0;
+    // 循环购物车里的数组
+    carts.forEach((element,index) => {
+      // 判断allChecked
+      if(element.checked){
+        // 计算总价格
+        totalPrice += element.goods_price * element.number;
+        // 总数据
+        totalNum += element.number;
+      }else{
+        allChecked=false;
+      }
+    });
+    // 把数据覆盖回data
+    this.setData({
+      allChecked,
+      totalPrice,
+      totalNum
+    })
   }
 })
