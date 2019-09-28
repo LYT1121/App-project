@@ -2,7 +2,7 @@
 // 引入需要使用async语法
 import regeneratorRuntime from '../../lib/runtime/runtime';
 // 引入封装好的异步代码
-import {getSetting,openSetting,chooseAddress,showModal} from "../../request/index.js"
+import {getSetting,openSetting,chooseAddress,showModal,showToast} from "../../request/index.js"
 Page({
   data:{
     // 收货地址
@@ -15,9 +15,6 @@ Page({
     totalPrice:0,
     // 总数量
     totalNum:0
-  },
-  onLoad(){
-    this.getGoodeCart()
   },
   getGoodeCart(){
     // 获取本地存储的数据
@@ -40,6 +37,7 @@ Page({
     this.setData({
       addressObj
     })
+    this.getGoodeCart()
   },
   async getUserInfo(){
     try{
@@ -76,17 +74,21 @@ Page({
     // 总数量
     let totalNum=0;
     // 循环购物车里的数组
-    carts.forEach((element,index) => {
-      // 判断allChecked
-      if(element.checked){
-        // 计算总价格
-        totalPrice += element.goods_price * element.number;
-        // 总数据
-        totalNum += element.number;
-      }else{
-        allChecked=false;
-      }
-    });
+    if(carts.length != 0){
+      carts.forEach((element,index) => {
+        // 判断allChecked
+        if(element.checked){
+          // 计算总价格
+          totalPrice += element.goods_price * element.number;
+          // 总数据
+          totalNum += element.number;
+        }else{
+          allChecked=false;
+        }
+      });
+    }else{
+      console.log('购物车里没有任何商品哦！');
+    }
     // 判断如果购物车里没有任何商品了，全选按钮为false
     allChecked=carts.length===0?false:allChecked;
     // 把数据覆盖回data
@@ -96,6 +98,31 @@ Page({
       totalNum
     })
   },
+  // 商品的全选按钮事件
+  /* handleAllChange(e){
+    let {allChecked} = this.data;
+    let carts = wx.getStorageSync('goodeCart');
+    // 单选按钮的值
+    let checked = carts.map(v=>v.checked);
+    // console.log(checked);
+    // console.log(e.detail.value);
+    if(e.detail.value.length === 0){
+      allChecked=false;
+      checked.forEach(e=>{
+        e=allChecked
+      })
+    }else{
+      
+    }
+    // 把数据覆盖回data
+    this.setData({
+      allChecked,
+      carts
+    })
+    wx.setStorageSync('goodeCart',carts);
+    // 重新计算数据(价格和数量)
+    this.countPrice(carts)
+  }, */
   // 商品的单选功能
   handleItemChange(e){
     // console.log(e);
@@ -143,5 +170,23 @@ Page({
     wx.setStorageSync('goodeCart',carts);
     // 重新计算数据(价格和数量)
     this.countPrice(carts)
+  },
+  // 点击结算按钮
+  async handlePay(){
+    // 拿商品数量判断
+    const {addressObj,totalNum} = this.data;
+    if(totalNum === 0){
+      await showToast({title:"您还没有选购商品哦！",icon:"none",mask:true})
+      return;
+    }
+    if(addressObj === ""){
+      await showToast({title:"您还没有选择收货地址哦！",icon:"none",mask:true})
+      return;
+    }
+    // 跳转到支付页面
+    wx.navigateTo({
+      url: '../pay/index'
+    });
+      
   }
 })

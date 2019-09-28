@@ -90,3 +90,17 @@ export const showModal =(params)=>{
     });
 })  
 }
+// 封装提示框
+export const showToast =(params)=>{
+    return new Promise((resolve,reject)=>{
+    wx.showToast({
+        ...params,
+        success: (result) => {
+            resolve(result)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+    });
+})  
+}
