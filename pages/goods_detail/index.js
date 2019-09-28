@@ -93,7 +93,9 @@ Page({
         goods_name:detailObj.goods_name,
         goods_price:detailObj.goods_price,
         goods_small_logo:detailObj.goods_small_logo,
-        number:1
+        number:1,
+        // 加多一个选中的状态
+        checked:true
       })
     }else{
       // 购物车里面已存在此商品

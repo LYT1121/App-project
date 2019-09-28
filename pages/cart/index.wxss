@@ -30,3 +30,105 @@
   flex: 1;
   text-align: right;
 }
+.cart .cart_title {
+  padding: 20rpx;
+  border-bottom: 10rpx solid #eee;
+}
+.cart .cart_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #eee;
+  align-items: stretch;
+}
+.cart .cart_list .cart_checkbox {
+  flex: 1;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+}
+.cart .cart_list view.cart_img {
+  flex: 2;
+}
+.cart .cart_list view.cart_img image {
+  width: 100%;
+}
+.cart .cart_list .cart_info {
+  padding-left: 20rpx;
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.cart .cart_list .cart_info .cart_info_title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cart .cart_list .cart_info .cart_info_concent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart .cart_list .cart_info .cart_info_concent .cart_info_price {
+  font-size: 32rpx;
+  color: var(--themeColor);
+}
+.cart .cart_list .cart_info .cart_info_concent .cart_info_num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart .cart_list .cart_info .cart_info_concent .cart_info_num button {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.cart .cart_list .cart_info .cart_info_concent .cart_info_num .num {
+  padding: 0 20rpx;
+}
+.cart .cart_none image {
+  width: 100%;
+}
+.btm_cart {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  justify-content: center;
+  height: 100rpx;
+  border-top: 1rpx solid #ccc;
+  display: flex;
+}
+.btm_cart .cart_all_checkbox {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btm_cart .cart_total {
+  flex: 2;
+  text-align: right;
+  margin-right: 30rpx;
+}
+.btm_cart .cart_total .total {
+  color: #000;
+  font-size: 36rpx;
+}
+.btm_cart .cart_total .total text {
+  color: var(--themeColor);
+  font-weight: 600;
+}
+.btm_cart .cart_order {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: var(--themeColor);
+}

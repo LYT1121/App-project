@@ -14,3 +14,55 @@
         <view class="phone">{{addressObj.telNumber}}</view>
     </view>
 </view>
+<view class="cart">
+    <view class="cart_title">购物车</view>
+    <view class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
+        <!-- 复选框 -->
+        <view class="cart_checkbox">
+            <radio-group>
+                <radio checked="{{item.checked}}"></radio>
+            </radio-group>  
+        </view>
+        <!-- 图片 -->
+        <view class="cart_img">
+            <image src="{{item.goods_small_logo}}" mode="widthFix"/>
+        </view>
+        <!-- 商品信息 -->
+        <view class="cart_info">
+            <view class="cart_info_title">{{item.goods_name}}</view>
+            <view class="cart_info_concent">
+                <view class="cart_info_price">￥{{item.goods_price}}</view>
+                <view class="cart_info_num">
+                   <button>-</button>
+                   <view class="num">
+                       {{item.number}}
+                   </view>
+                   <button>+</button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <navigator class="cart_none" url="../category/index" open-type="switchTab">
+        <image src="https://s2.ax1x.com/2019/09/27/uMkWlR.png" mode="widthFix"/>
+    </navigator>
+</view>
+<!-- 购物车结算 -->
+<view class="btm_cart">
+    <!-- 复选框 -->
+    <view class="cart_all_checkbox">
+        <radio-group>
+            <radio>全选</radio>
+        </radio-group>  
+    </view>
+    <!-- 合计 -->
+    <view class="cart_total">
+        <view class="total">
+            合计：<text>￥{{999}}</text>
+        </view>
+        <view class="postage">包含运费</view>
+    </view>
+    <!-- 结算按钮 -->
+    <view class="cart_order">
+        结算({{1}})
+    </view>
+</view>

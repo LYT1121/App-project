@@ -7,6 +7,19 @@ Page({
   data:{
     // 收货地址
     addressObj:{},
+    // 购物车信息
+    carts:[]
+  },
+  onLoad(){
+    this.getGoodeCart()
+  },
+  getGoodeCart(){
+    // 获取本地存储的数据
+    let carts = wx.getStorageSync('goodeCart')
+    this.setData({
+      carts
+    })
+    console.log(carts);
   },
   // 合理获取收货地址=>获取用户信息=>获取用户授权状态=>打开授权页面
   handleAddress(){

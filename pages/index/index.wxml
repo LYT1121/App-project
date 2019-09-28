@@ -26,7 +26,7 @@
         <view class="floor_group_concent" mode="widthFix">
         <!-- 第二次循环 -->
         <!-- 因为图片不是同等比例的 scaleToFill让其不保持纵横比例缩放-->
-        <navigator wx:for="{{item1.product_list}}" wx:key="name" wx:for-index="index2" wx:for-item="item2">
+        <navigator url="{{item2.navigator_url}}" wx:for="{{item1.product_list}}" wx:key="name" wx:for-index="index2" wx:for-item="item2">
             <image src="{{item2.image_src}}" mode="{{index2===0?'widthFix':scaleToFill}}"/>
         </navigator>
         </view>
