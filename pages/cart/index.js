@@ -93,5 +93,22 @@ Page({
       totalPrice,
       totalNum
     })
+  },
+  // 商品的单选功能
+  handleItemChange(e){
+    // console.log(e);
+    // 获取要修改元素的索引
+    const {index} = e.target.dataset;
+    // 获取购物车数组
+    let {carts} = this.data;
+    // 选中的属性取反
+    carts[index].checked = !carts[index].checked
+    // 修改data中的carts和缓存中的carts
+    this.setData({
+      carts
+    })
+    wx.setStorageSync('goodeCart',carts);
+    // 重新计算数据(价格和数量)
+    this.countPrice(carts)
   }
 })

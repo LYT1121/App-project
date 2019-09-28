@@ -19,9 +19,9 @@
     <view class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
         <!-- 复选框 -->
         <view class="cart_checkbox">
-            <radio-group>
-                <radio checked="{{item.checked}}"></radio>
-            </radio-group>  
+            <checkbox-group bindchange="handleItemChange" data-index="{{index}}">
+                <checkbox checked="{{item.checked}}"></checkbox>
+            </checkbox-group>  
         </view>
         <!-- 图片 -->
         <view class="cart_img">
@@ -50,9 +50,9 @@
 <view class="btm_cart">
     <!-- 复选框 -->
     <view class="cart_all_checkbox">
-        <radio-group>
-            <radio checked="{{allChecked}}">全选</radio>
-        </radio-group>  
+        <checkbox-group>
+            <checkbox checked="{{allChecked}}">全选</checkbox>
+        </checkbox-group>  
     </view>
     <!-- 合计 -->
     <view class="cart_total">
