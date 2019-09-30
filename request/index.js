@@ -2,6 +2,13 @@
 let requestTimes = 0
 // 封装ajax请求
 export const request=(params)=>{
+    // 判断 url中是否带有 /my/ 请求的是私有的路径 带上header token
+    let header = {...params.header};
+    // includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则fals
+    if(params.url.includes('/my/')){
+        // 如果有，就拼接header 带上token
+        header["Authorization"]=wx.getStorageSync("token");
+    }
     requestTimes++
     // 全局的loading效果
     wx.showLoading({
