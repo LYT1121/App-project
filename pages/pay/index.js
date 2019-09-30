@@ -18,17 +18,15 @@ Page({
   },
   getGoodeCart(){
     // 获取本地存储的数据
-    let carts = wx.getStorageSync('goodeCart')
+    let carts = wx.getStorageSync('goodeCart') || [];
+    // 筛选出选中的=>filter 数组过滤
+    carts = carts.filter(v=>v.checked);
     this.setData({
       carts
     })
     // console.log(carts);
     // 页面一加载就调用计算数据
     this.countPrice(carts)
-  },
-  // 合理获取收货地址=>获取用户信息=>获取用户授权状态=>打开授权页面
-  handleAddress(){
-      this.getUserInfo()
   },
   onShow(){
     // 获取缓存中的收货地址 默认值 空字符串=>默认false
@@ -100,6 +98,11 @@ Page({
   },
   // 点击支付按钮
   handlePay(){
-    
+    // 跳转到授权页面
+    wx.navigateTo({
+      url: '/pages/auth/index',
+    });
+      
   }
+  
 })

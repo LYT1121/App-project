@@ -10,7 +10,7 @@
 </view>
 <!-- 导航菜单 -->
 <view class="index_nav">
-    <navigator wx:for="{{navigationList}}" wx:key="name">
+    <navigator wx:for="{{navigationList}}" wx:key="name" url="/pages/category/index" open-type="switchTab">
         <image src="{{item.image_src}}" mode="widthFix"/>
     </navigator> 
 </view>

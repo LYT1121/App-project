@@ -104,3 +104,18 @@ export const showToast =(params)=>{
     });
 })  
 }
+// 封装微信登录
+export const login =(params)=>{
+    return new Promise((resolve,reject)=>{
+    wx.login({
+        timeout:10000,
+        success: (result) => {
+            resolve(result)
+        },
+        fail: (err) => {
+            reject(err)
+        }
+    });
+      
+})  
+}

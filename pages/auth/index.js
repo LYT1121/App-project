@@ -1,66 +1,31 @@
-// pages/auth/index.js
+// 引入需要使用async语法
+import regeneratorRuntime from '../../lib/runtime/runtime';
+// 引入封装好的异步代码
+import { login,request} from "../../request/index.js"
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  // 通过按钮获取用户信息
+  hangleUserinfo(e) {
+    // console.log(e);
+    /* const {encryptedData,rawData,iv,signature} = e.detail; */
+    // 为了让5个值关联起来=>把e传过去
+    this.wxLogin(e);
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 执行微信登录
+  async wxLogin(e){
+    // 把授权需要的code值解构出来
+    const {code} = await login();
+    const {encryptedData,rawData,iv,signature} = e.detail;
+    // 拼接
+    const tokenParam = {
+      encryptedData,rawData,iv,signature,code
+    }
+    // console.log(tokenParam);
+    // 发起请求 => 获取token值
+    const res = await request({url:'/users/wxlogin',method:'post',data:tokenParam});
+    // console.log(res);
+    wx.navigateBack({
+      // 返回上一页
+      delta: 1
+    }); 
   }
 })
