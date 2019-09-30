@@ -104,23 +104,34 @@ Page({
     }
     // console.log(orderParams); 
     // 创建订单=>获取订单编号
-    const {order_number} = await request({url:'/my/orders/create',method:'post',data:orderParams,header:{Authorization:token}});
+    const {order_number} = await request({url:'/my/orders/create',method:'post',data:orderParams});
     // console.log(order_number);
     //  获取支付参数
-    const {pay} = await request({url:'/my/orders/req_unifiedorder',method:'post',data:{order_number},header:{Authorization:token}});
+    // const {pay} = await request({url:'/my/orders/req_unifiedorder',method:'post',data:{order_number},header:{Authorization:token}});
+    const {pay} = await request({url:'/my/orders/req_unifiedorder',method:'post',data:{order_number}});
     // 调用内置的微信支付
     await requestPayment(pay);
     // 查看订单支付状态
-    const res = await request({url:'/my/orders/chkOrder',method:'post',data:{order_number},header:{Authorization:token}});
+    const res = await request({url:'/my/orders/chkOrder',method:'post',data:{order_number}});
     // console.log(res);
     // 弹窗提示用户=>支付成功=>跳转到订单页面
-    await showToast({title:'支付成功',mask:true});
+    await showToast({ title: res, mask: true });
+    // 删除购物车数据=>修改数据
+    /* this.setData({
+      // 保留购物车中未选中的商品 === 删除了选中的商品[].splice(index,1)
+      carts:carts.filter(v=>!v.checked)
+    }); */
+    // 获取缓存中完整的数据
+    let newCart=wx.getStorageSync("goodeCart");
+    newCart=newCart.filter(v=>!v.checked);
+    wx.setStorageSync("goodeCart", newCart);
+
     wx.navigateTo({
-      url: '/pages/order/index'
+      url: '/pages/order/index',
     });
     }catch(err){
-      await showToast({ title: "支付失败" })
-      console.log(error);
+      await showToast({ title:'支付失败'})
+      console.log(err);
     }
   }
   

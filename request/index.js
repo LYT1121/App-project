@@ -22,6 +22,9 @@ export const request=(params)=>{
             // 把参数展开进来
             ...params,
             url: baseUrl+params.url,
+            header,
+            // 以后可能会在请求头多其他的参数
+            // header:{...header,...params.header},
             success: (result) => {
                 if(result.data.meta&&result.data.meta.status === 200){
                     // 成功之后的回调 => 把返回值写完整一点 => 方便后续不用写太繁琐
