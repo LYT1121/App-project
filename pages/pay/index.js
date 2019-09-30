@@ -2,7 +2,7 @@
 // 引入需要使用async语法
 import regeneratorRuntime from '../../lib/runtime/runtime';
 // 引入封装好的异步代码
-import {getSetting,openSetting,chooseAddress,showModal,showToast} from "../../request/index.js"
+import {request,requestPayment,showToast} from "../../request/index.js"
 Page({
   data:{
     // 收货地址
@@ -36,32 +36,6 @@ Page({
       addressObj
     })
     this.getGoodeCart()
-  },
-  async getUserInfo(){
-    try{
-      // 1.获取用户对收货地址的授权状态
-    const result1 = await getSetting();
-    const auth = result1.authSetting["scope.address"];
-    // console.log(result1);
-    // 2.获取用户对收货地址的授权状态
-    if(auth === false){
-      // 3.诱导用户自己打开授权页面给权限
-      await openSetting();
-    }
-    // 4.直接获取用户的收货地址
-    const result2 = await chooseAddress();
-    // 新增一个属性=>地址拼接
-    result2.site=result2.provinceName+result2.cityName+result2.countyName+result2.detailInfo;
-    // console.log(result2);
-    // 把地址信息存入缓存中=>下次打开使用
-    wx.setStorageSync('addressObj',result2);
-    // 存入data中=>渲染页面
-    this.setData({
-      addressObj:result2
-    })
-    }catch(error){
-      console.log(error);
-    }
   },
   // 计算数据=>可能被调用多次=>封装起来
   countPrice(carts){
@@ -98,11 +72,56 @@ Page({
   },
   // 点击支付按钮
   handlePay(){
-    // 跳转到授权页面
-    wx.navigateTo({
-      url: '/pages/auth/index',
-    });
+    this.orderPay()
+  },
+  // 执行支付的逻辑
+  async orderPay(){
+    try{
       
+    // 判断缓存中有没有token值
+    const token = wx.getStorageSync('token');
+    if(!token){
+      // 跳转到授权页面
+      wx.navigateTo({
+        url: '/pages/auth/index',
+      });
+      return;
+    }
+    //#region 根据接口要求构造订单参数
+    const {totalPrice,addressObj,carts} = this.data;
+    const order_price = totalPrice;
+    const consignee_addr = addressObj.site;
+    const goods = carts.map(v=>{
+      return {
+        goods_id:v.goods_id,
+        goods_number:v.number,
+        goods_price:v.goods_price
+      }
+    });
+    //#endregion
+    const orderParams = {
+      order_price,consignee_addr,goods
+    }
+    // console.log(orderParams); 
+    // 创建订单=>获取订单编号
+    const {order_number} = await request({url:'/my/orders/create',method:'post',data:orderParams,header:{Authorization:token}});
+    // console.log(order_number);
+    //  获取支付参数
+    const {pay} = await request({url:'/my/orders/req_unifiedorder',method:'post',data:{order_number},header:{Authorization:token}});
+    // 调用内置的微信支付
+    await requestPayment(pay);
+    // 查看订单支付状态
+    const res = await request({url:'/my/orders/chkOrder',method:'post',data:{order_number},header:{Authorization:token}});
+    // console.log(res);
+    // 弹窗提示用户=>支付成功=>跳转到订单页面
+    await showToast({title:'支付成功',mask:true});
+    wx.navigateTo({
+      url: '/pages/order/index'
+    });
+    }catch(err){
+      await showToast({ title: "支付失败" })
+      console.log(error);
+    }
   }
   
 })

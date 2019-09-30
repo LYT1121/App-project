@@ -21,8 +21,10 @@ Page({
     }
     // console.log(tokenParam);
     // 发起请求 => 获取token值
-    const res = await request({url:'/users/wxlogin',method:'post',data:tokenParam});
+    const {token} = await request({url:'/users/wxlogin',method:'post',data:tokenParam});
     // console.log(res);
+    // 把获取到的token值存到缓存中
+    wx.setStorageSync("token", token);
     wx.navigateBack({
       // 返回上一页
       delta: 1

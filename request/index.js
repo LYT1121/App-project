@@ -122,7 +122,21 @@ export const login =(params)=>{
         fail: (err) => {
             reject(err)
         }
-    });
-      
+    });  
+})  
+}
+// 封装微信支付的API        pay 支付参数
+export const requestPayment =(pay)=>{
+    return new Promise((resolve,reject)=>{
+   wx.requestPayment({
+       ...pay,
+       success: (result) => {
+        resolve(result)
+       },
+       fail: (err) => {
+           reject(err)
+       }
+   });
+     
 })  
 }
