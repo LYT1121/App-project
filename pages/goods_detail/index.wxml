@@ -31,6 +31,7 @@
     <view class="detail_concent">
         <commodityDetails detailTitleList="{{detailTitleList}}" curronIndex="{{curronIndex}}"
             binditemChange="itemChange">
+        </commodityDetails>
             <view class="goods_content" wx:if="{{curronIndex===0}}">
                 <view class="goods_content_img">
                     <!-- 用到富文本标签解析获取到的内容 -->
@@ -38,7 +39,6 @@
                 </view>
             </view>
             <view class="goods_content" wx:else="{{curronIndex===1}}"> 1 </view>
-        </commodityDetails>
     </view>
     <!-- 底部工具类 -->
     <view class="btm_tool">

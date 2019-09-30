@@ -99,21 +99,14 @@ Page({
     })
   },
   // 商品的全选按钮事件
-  /* handleAllChange(e){
+  handleAllChange(e){
     let {allChecked} = this.data;
+    allChecked=!allChecked;
+    // console.log(allChecked);
     let carts = wx.getStorageSync('goodeCart');
-    // 单选按钮的值
-    let checked = carts.map(v=>v.checked);
-    // console.log(checked);
-    // console.log(e.detail.value);
-    if(e.detail.value.length === 0){
-      allChecked=false;
-      checked.forEach(e=>{
-        e=allChecked
-      })
-    }else{
-      
-    }
+    carts.forEach(e=>{
+      e.checked=allChecked
+    })
     // 把数据覆盖回data
     this.setData({
       allChecked,
@@ -122,7 +115,7 @@ Page({
     wx.setStorageSync('goodeCart',carts);
     // 重新计算数据(价格和数量)
     this.countPrice(carts)
-  }, */
+  },
   // 商品的单选功能
   handleItemChange(e){
     // console.log(e);

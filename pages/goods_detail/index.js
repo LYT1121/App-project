@@ -83,7 +83,7 @@ Page({
     let cartList = wx.getStorageSync('goodeCart') || [];
     // 判断该商品是否存在于数组中
     const index = cartList.findIndex((item)=>{
-      item.goods_id === detailObj.goods_id
+      return item.goods_id === detailObj.goods_id
     })
     if(index === -1){
       // 没有=>第一次添加

@@ -16,7 +16,8 @@
 </view>
 <view class="cart">
     <view class="cart_title">购物车</view>
-    <view wx:if="{{carts.length!=0}}" class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
+    <view wx:if="{{carts.length!=0}}">
+        <view  class="cart_list" wx:for="{{carts}}" wx:key="goods_id">
         <!-- 复选框 -->
         <view class="cart_checkbox">
             <checkbox-group bindchange="handleItemChange" data-index="{{index}}">
@@ -25,11 +26,15 @@
         </view>
         <!-- 图片 -->
         <view class="cart_img">
-            <image src="{{item.goods_small_logo}}" mode="widthFix"/>
+            <navigator url="../goods_detail/index?goods_id={{item.goods_id}}">
+                <image src="{{item.goods_small_logo}}" mode="widthFix"/>
+            </navigator>
         </view>
         <!-- 商品信息 -->
         <view class="cart_info">
-            <view class="cart_info_title">{{item.goods_name}}</view>
+            <navigator url="../goods_detail/index?goods_id={{item.goods_id}}">
+                <view class="cart_info_title">{{item.goods_name}}</view>
+            </navigator>
             <view class="cart_info_concent">
                 <view class="cart_info_price">￥{{item.goods_price}}</view>
                 <view class="cart_info_num">
@@ -42,16 +47,17 @@
             </view>
         </view>
     </view>
-    <!-- <navigator wx:else class="cart_none" url="../category/index" open-type="switchTab">
+    </view>
+    <view wx:else class="cart_none">
+        <!-- url="../category/index" open-type="switchTab" -->
         <image src="https://s2.ax1x.com/2019/09/27/uMkWlR.png" mode="widthFix"/>
-    </navigator> -->
+    </view>
 </view>
 <!-- 购物车结算 -->
 <view class="btm_cart">
     <!-- 复选框 -->
     <view class="cart_all_checkbox">
-        <!-- <checkbox-group bindchange="handleAllChange"> -->
-        <checkbox-group>
+        <checkbox-group bindchange="handleAllChange">
             <checkbox checked="{{allChecked}}">全选</checkbox>
         </checkbox-group>  
     </view>
